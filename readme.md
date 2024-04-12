@@ -1,7 +1,5 @@
 # Assessment Application
 
-## Description
-
 The Assessment Application is a simple web application with a frontend and backend. The frontend provides a user interface to interact with the backend APIs. The backend exposes two APIs - one for storing data into a local file and another for retrieving stored data from the file. Additionally, the backend includes an API to delete data from the file.
 
 ## Prerequisites
@@ -10,10 +8,6 @@ Before running the application or tests, ensure that you have the following prer
 
 - Node.js: Version 12.x or later
 - npm: Version 6.x or later
-
-## Feature
-
-As a product owner I would like to have an easy and lightweight To-Do app, where users can quickly add and remove their ongoing tasks, and remove them when complete clicking the "X".
 
 ## Installation
 
@@ -63,16 +57,25 @@ To run BDD tests (Cucumber), use the following command:
 npm run test-bdd
 ```
 
+---
+
 # Challenge Tasks
+
+## Feature
+
+As a product owner I would like to have an easy and lightweight To-Do app, where users can quickly add and remove their ongoing tasks, and remove them when complete clicking the "X".
+
+## Tasks
 
 1.1 Read the app documentation (this readme), and based on "Feature" section check:
 
-- Are BDD tests in feature file properly defined
+- Is the story & feature well defined?
+- Are BDD tests in feature file sufficient?
 - How would you define your feature file?
 
 1.2 Use the app in exploratory fashion and check:
 
-- Does the app work as esigned
+- Does the app work as designed
 - Are there any bugs?
 - If so write a bug report on them
 
@@ -80,3 +83,4 @@ npm run test-bdd
 
 - Do you find these unit tests done right?
 - Would you suggest to your team to add more, or write them in a different way? 
+- What other tools or processes would you suggest?

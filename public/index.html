@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assessment App</title>
+    <style>
+        .popup {
+            position: fixed;
+            top: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: #4CAF50;
+            color: white;
+            text-align: center;
+            padding: 10px;
+            width: 300px;
+            margin-top: 20px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .error {
+            background-color: #f44336;
+        }
+    </style>
+</head>
+<body>
+    <h1>Assessment App</h1>
+    <textarea id="dataInput" rows="4" cols="50"></textarea>
+    <br>
+    <button onclick="saveData()">Save Data</button>
+    <br>
+    <ul id="dataList"></ul> <!-- Display the list of items here -->
+
+    <div id="successMessage" class="popup"></div> <!-- Display success message here -->
+
+    <script>
+        async function saveData() {
+            const data = document.getElementById('dataInput').value;
+            if (!data) {
+                return;
+            }
+            const response = await fetch('/data', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({ data })
+            });
+            if (response.ok) {
+                document.getElementById('dataInput').value = ''; // Clear input field
+                showMessage('Data saved successfully');
+                fetchData(); // Fetch data again after saving
+            }
+        }
+
+        async function fetchData() {
+            const response = await fetch('/data');
+            if (response.ok) {
+                const data = await response.json();
+                const dataList = document.getElementById('dataList');
+                dataList.innerHTML = ''; // Clear previous items
+                data.forEach(item => {
+                    const listItem = document.createElement('li');
+                    listItem.textContent = `${item.text}`;
+                    const deleteButton = document.createElement('button');
+                    deleteButton.textContent = 'X';
+                    deleteButton.onclick = () => deleteData(item.id); // Call deleteData function with item id
+                    listItem.appendChild(deleteButton);
+                    dataList.appendChild(listItem);
+                });
+            } else {
+                const errorMessage = await response.text();
+                showMessage(errorMessage, true);
+            }
+        }
+
+        async function deleteData(id) {
+            const response = await fetch(`/data/${id}`, {
+                method: 'DELETE'
+            });
+            if (response.ok) {
+                showMessage('Data deleted successfully');
+                fetchData(); // Fetch data again after deleting
+            } else {
+                const errorMessage = await response.text();
+                showMessage(errorMessage, true);
+            }
+        }
+
+        function showMessage(message, isError = false) {
+            const successMessage = document.getElementById('successMessage');
+            successMessage.className = isError ? 'popup error' : 'popup';
+            successMessage.textContent = message;
+            successMessage.style.display = 'block';
+            setTimeout(() => {
+                successMessage.style.display = 'none';
+            }, 3000); // Hide message after 3 seconds
+        }
+
+        fetchData(); // Fetch data on page load
+    </script>
+</body>
+</html>

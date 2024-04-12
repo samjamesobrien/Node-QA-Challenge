@@ -9,53 +9,29 @@ Before running the application or tests, ensure that you have the following prer
 - Node.js: Version 12.x or later
 - npm: Version 6.x or later
 
-## Installation
+### Installation
 
 To install the Assessment Application, follow these steps:
 
-1. Clone the repository:
-
-```bash
-git clone git@github.com:samjamesobrien/Node-QA-Challenge.git
-```
-
-2. Navigate to the project directory:
-
-```bash
-cd Node-QA-Challenge
-```
-
-3. Install dependencies:
-
-```bash
-npm clean-install
-```
+1. Clone the repository: `git clone git@github.com:samjamesobrien/Node-QA-Challenge.git`
+2. Navigate to the project directory: `cd Node-QA-Challenge`
+3. Install dependencies: `npm clean-install`
 
 ## Usage
 
 ### Running the Application
 
-To run the Assessment Application, use the following command:
-
-```bash
-npm start
-```
+To run the Assessment Application, use the following command: `npm start`
 
 The application will be accessible at [http://localhost:3000](http://localhost:3000).
 
 ### Running Tests
 
-To run unit tests, use the following command:
+To run all tests call `npm test`
 
-```bash
-npm test
-```
+To run only unit tests, use the following command: `npm run test:unit`
 
-To run BDD tests (Cucumber), use the following command:
-
-```bash
-npm run test-bdd
-```
+To run only BDD tests (Cucumber), use the following command: `npm run test:bdd`
 
 ---
 

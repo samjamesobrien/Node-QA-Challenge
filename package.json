@@ -1,15 +1,14 @@
 {
-  "name": "_gitplus",
+  "name": "node-qa-challenge",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
   "scripts": {
     "start": "node index.js",
-    "test": "jest",
-    "test-bdd": "cucumber-js"
+    "test": "npm run test:unit && npm run test:bdd",
+    "test:unit": "jest",
+    "test:bdd": "cucumber-js"
   },
-  "keywords": [],
-  "author": "",
   "license": "ISC",
   "dependencies": {
     "express": "^4.19.2"
